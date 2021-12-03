@@ -1,0 +1,9 @@
+{
+    "name": "appconfig-feature-flags",
+    "description": "appconfig-feature-flags",
+    "version": "0.0.1",
+    "private": true,
+    "dependencies": {
+        "node-fetch": "^2.6.6"
+    }
+}

@@ -1,0 +1,172 @@
+{
+    "YOUR_DYNAMODB_TABLE_NAME": [
+    {
+      "PutRequest": {
+        "Item": {
+          "itemName": {
+            "S": "Product One"
+          },
+          "id": {
+            "N": "1"
+          },
+          "itemImage": {
+            "S": "one.png"
+          },
+          "itemPrice": {
+            "N": "10.99"
+          },
+          "itemStock": {
+            "N": "5"
+          },
+          "itemDesc": {
+            "S": "Sed at sapien in turpis blandit tempor et a lacus. Aenean mollis tempor tortor eu tincidunt. "
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "itemName": {
+            "S": "Product Two"
+          },
+          "id": {
+            "N": "2"
+          },
+          "itemImage": {
+            "S": "two.png"
+          },
+          "itemPrice": {
+            "N": "19.50"
+          },
+          "itemStock": {
+            "N": "8"
+          },
+          "itemDesc": {
+            "S": "Sed at sapien in turpis blandit tempor et a lacus. Aenean mollis tempor tortor eu tincidunt. "
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "itemName": {
+            "S": "Product three"
+          },
+          "id": {
+            "N": "3"
+          },
+          "itemImage": {
+            "S": "three.png"
+          },
+          "itemPrice": {
+            "N": "32.00"
+          },
+          "itemStock": {
+            "N": "10"
+          },
+          "itemDesc": {
+            "S": "Sed at sapien in turpis blandit tempor et a lacus. Aenean mollis tempor tortor eu tincidunt. "
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "itemName": {
+            "S": "Product Four"
+          },
+          "id": {
+            "N": "4"
+          },
+          "itemImage": {
+            "S": "four.png"
+          },
+          "itemPrice": {
+            "N": "8.99"
+          },
+          "itemStock": {
+            "N": "2"
+          },
+          "itemDesc": {
+            "S": "Sed at sapien in turpis blandit tempor et a lacus. Aenean mollis tempor tortor eu tincidunt. "
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "itemName": {
+            "S": "Product Five"
+          },
+          "id": {
+            "N": "5"
+          },
+          "itemImage": {
+            "S": "five.png"
+          },
+          "itemPrice": {
+            "N": "21.50"
+          },
+          "itemStock": {
+            "N": "22"
+          },
+          "itemDesc": {
+            "S": "Sed at sapien in turpis blandit tempor et a lacus. Aenean mollis tempor tortor eu tincidunt. "
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "itemName": {
+            "S": "Product Six"
+          },
+          "id": {
+            "N": "6"
+          },
+          "itemImage": {
+            "S": "six.png"
+          },
+          "itemPrice": {
+            "N": "5.50"
+          },
+          "itemStock": {
+            "N": "18"
+          },
+          "itemDesc": {
+            "S": "Sed at sapien in turpis blandit tempor et a lacus. Aenean mollis tempor tortor eu tincidunt. "
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "itemName": {
+            "S": "Product Seven"
+          },
+          "id": {
+            "N": "7"
+          },
+          "itemImage": {
+            "S": "seven.png"
+          },
+          "itemPrice": {
+            "N": "29.99"
+          },
+          "itemStock": {
+            "N": "14"
+          },
+          "itemDesc": {
+            "S": "Sed at sapien in turpis blandit tempor et a lacus. Aenean mollis tempor tortor eu tincidunt. "
+          }
+        }
+      }
+    }
+  ]
+}

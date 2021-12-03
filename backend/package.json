@@ -1,0 +1,12 @@
+{
+    "name": "appconfig-feature-flags",
+    "description": "appconfig-feature-flags",
+    "version": "1.0.0",
+    "private": true,
+    "dependencies": {},
+    "devDependencies": {
+        "eslint": "^8.1.0",
+        "eslint-config-strongloop": "^2.1.0",
+        "eslint-plugin-import": "^2.25.2"
+    }
+}
