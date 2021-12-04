@@ -11,11 +11,11 @@ Read more in the blog post Introducing AWS AppConfig Feature Flags In Preview: h
 
 1. Clone the repo onto your local development machine.
 ```bash
-git clone appconfig-feature-flags
+git clone https://github.com/aws-samples/aws-appconfig-feature-flags.git
 ```
 2. Run the following commands to change to the backend directory and install dependencies.
 ```bash
-cd appconfig-feature-flags
+cd aws-appconfig-feature-flags
 cd backend
 npm install
 ```
@@ -32,11 +32,6 @@ sam deploy --guided
 ```bash
 Key DynamoDBTableName Description The name of your DynamoDB table Value sam-app-DynamoDBTable-XXXXXXXXXXX
 Key HttpApiUrl Description URL of your API endpoint Value https://XXXXXXXX.execute-api.XX-XXXXXXXX-1.amazonaws.com
-```
-
-```bash
-sam build
-sam deploy --guided
 ```
 
 ## Populate DynamoDB table with sample data
