@@ -1,0 +1,36 @@
+// Copyright 2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+// SPDX-License-Identifier: MIT-0
+
+import React, { useContext } from 'react';
+import { Container, Header } from 'semantic-ui-react';
+
+import InitState from './pages/InitState';
+import TopMenu from './components/TopMenu';
+import ItemTable from './components/ItemTable';
+import AppContext from './context/AppContext';
+
+import './App.css';
+
+const App: React.FC = (): React.JSX.Element => {
+    const { getTotalItemsInCart } = useContext(AppContext);
+    
+    return (
+        <div style={styles}>
+            <InitState />
+            <TopMenu cartItemCount={getTotalItemsInCart()} />
+            <Container text style={{ marginBottom: '1em' }}>
+                <Header as='h1' style={{ textAlign: 'center' }}>Feature Flag Store</Header>
+            </Container>
+            <Container style={{ marginTop: '2em' }}>
+                <ItemTable type='echo' />
+            </Container>
+        </div>
+    );
+};
+
+export default App;
+
+const styles: React.CSSProperties = {
+    marginLeft: '1em',
+    marginRight: '1em'
+};

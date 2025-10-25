@@ -1,0 +1,30 @@
+# SAM configuration file template
+# Copy this to samconfig.toml and update with your values
+
+version = 0.1
+
+[default]
+[default.global]
+[default.global.parameters]
+stack_name = "appconfig-feature-flags-typescript"
+
+[default.build]
+[default.build.parameters]
+cached = true
+parallel = true
+
+[default.deploy]
+[default.deploy.parameters]
+capabilities = "CAPABILITY_IAM"
+confirm_changeset = true
+resolve_s3 = true
+s3_prefix = "appconfig-feature-flags-typescript"
+region = "us-east-1"
+image_repositories = []
+parameter_overrides = [
+    "AppName=appconfig-feature-flags-ts",
+    "AppConfigApplication=your-appconfig-application-id",
+    "AppConfigEnvironment=your-appconfig-environment-id", 
+    "AppConfigConfigurationProfile=your-appconfig-configuration-profile-id",
+    "ClientDomains=*"
+]

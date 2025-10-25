@@ -16,7 +16,16 @@
 
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
-Description: AWS AppConfig Feature Flags example
+Description: AWS AppConfig Feature Flags example - TypeScript version
+
+Globals:
+  Function:
+    Runtime: nodejs22.x
+    MemorySize: 128
+    Timeout: 100
+    Environment:
+      Variables:
+        NODE_ENV: production
 
 ###################################################################################################
 ##  Template Parameters                                                                         ##
@@ -48,9 +57,9 @@ Resources:
   getFeatureFlags:
     Type: AWS::Serverless::Function
     Properties:
-      Handler: getFeatureFlags.handler
-      CodeUri: src/getFeatureFlags/
-      Runtime: nodejs14.x
+      Handler: dist/getFeatureFlags/getFeatureFlags.handler
+      CodeUri: .
+      Runtime: nodejs22.x
       MemorySize: 128
       Timeout: 100
       Layers:
@@ -70,9 +79,10 @@ Resources:
           APPCONFIG_APPLICATION: !Ref AppConfigApplication
           APPCONFIG_ENVIRONMENT: !Ref AppConfigEnvironment
           APPCONFIG_CONFIGURATION: !Ref AppConfigConfigurationProfile
-          # AWS_APPCONFIG_EXTENSION_POLL_INTERVAL_SECONDS: 45
-          # AWS_APPCONFIG_EXTENSION_POLL_TIMEOUT_MILLIS: 3000
-          # AWS_APPCONFIG_EXTENSION_HTTP_PORT: 2772
+          AWS_APPCONFIG_EXTENSION_POLL_INTERVAL_SECONDS: 45
+          AWS_APPCONFIG_EXTENSION_POLL_TIMEOUT_MILLIS: 3000
+          AWS_APPCONFIG_EXTENSION_HTTP_PORT: 2772
+          NODE_ENV: production
       Events:
         Api:
           Type: HttpApi
@@ -85,9 +95,9 @@ Resources:
   getAllProducts:
     Type: AWS::Serverless::Function
     Properties:
-      Handler: getAllProducts.handler
-      CodeUri: src/getAllProducts/
-      Runtime: nodejs14.x
+      Handler: dist/getAllProducts/getAllProducts.handler
+      CodeUri: .
+      Runtime: nodejs22.x
       MemorySize: 128
       Timeout: 100
       Layers:
@@ -111,8 +121,9 @@ Resources:
           APPCONFIG_ENVIRONMENT: !Ref AppConfigEnvironment
           APPCONFIG_CONFIGURATION: !Ref AppConfigConfigurationProfile
           AWS_APPCONFIG_EXTENSION_POLL_INTERVAL_SECONDS: 15
-          # AWS_APPCONFIG_EXTENSION_POLL_TIMEOUT_MILLIS: 3000
-          # AWS_APPCONFIG_EXTENSION_HTTP_PORT: 2772
+          AWS_APPCONFIG_EXTENSION_POLL_TIMEOUT_MILLIS: 3000
+          AWS_APPCONFIG_EXTENSION_HTTP_PORT: 2772
+          NODE_ENV: production
       Events:
         Api:
           Type: HttpApi
@@ -125,12 +136,12 @@ Resources:
   FeatureFlagLayer:
     Type: AWS::Serverless::LayerVersion
     Properties:
-      ContentUri: src/FeatureFlagLayer/.
+      ContentUri: dist/FeatureFlagLayer/.
       CompatibleRuntimes:
-          - nodejs14.x
+          - nodejs22.x
       RetentionPolicy: Delete
     Metadata:
-      BuildMethod: nodejs14.x
+      BuildMethod: nodejs22.x
 
   ##  API Gateway
   HttpApi:
@@ -170,17 +181,17 @@ Mappings:
     ap-northeast-3:
       ARN: arn:aws:lambda:ap-northeast-3:706869817123:layer:AWS-AppConfig-Extension:42
     us-east-1:
-      ARN: arn:aws:lambda:us-east-1:027255383542:layer:AWS-AppConfig-Extension:61
+      ARN: arn:aws:lambda:us-east-1:027255383542:layer:AWS-AppConfig-Extension:82
     us-east-2:
-      ARN: arn:aws:lambda:us-east-2:728743619870:layer:AWS-AppConfig-Extension:47
+      ARN: arn:aws:lambda:us-east-2:728743619870:layer:AWS-AppConfig-Extension:68
     eu-north-1:
-      ARN: arn:aws:lambda:eu-north-1:646970417810:layer:AWS-AppConfig-Extension:86
+      ARN: arn:aws:lambda:eu-north-1:646970417810:layer:AWS-AppConfig-Extension:107
     ap-northeast-2:
-      ARN: arn:aws:lambda:ap-northeast-2:826293736237:layer:AWS-AppConfig-Extension:54
+      ARN: arn:aws:lambda:ap-northeast-2:826293736237:layer:AWS-AppConfig-Extension:75
     us-west-2:
-      ARN: arn:aws:lambda:us-west-2:359756378197:layer:AWS-AppConfig-Extension:89
+      ARN: arn:aws:lambda:us-west-2:359756378197:layer:AWS-AppConfig-Extension:110
     us-west-1:
-      ARN: arn:aws:lambda:us-west-1:958113053741:layer:AWS-AppConfig-Extension:61
+      ARN: arn:aws:lambda:us-west-1:958113053741:layer:AWS-AppConfig-Extension:82
     ap-northeast-1:
       ARN: arn:aws:lambda:ap-northeast-1:980059726660:layer:AWS-AppConfig-Extension:45
     us-gov-east-1:

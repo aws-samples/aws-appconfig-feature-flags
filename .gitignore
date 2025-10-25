@@ -24,3 +24,6 @@ yarn-error.log*
 
 config.json
 dynamodb.json
+frontend/.env
+backend/function-code.zip
+backend/getAllProducts.zip

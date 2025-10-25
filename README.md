@@ -1,77 +1,266 @@
-# AWS AppConfig Feature Flags example
+# AWS AppConfig Feature Flags - TypeScript Edition
 
-## Description
-AWS AppConfig Feature Flags provide customers with the control to roll out new features at the rate that they want to introduce the change to their application. Customers can validate these changes to make sure that they are free of errors and match the expected input of their application. While deploying new values gradually, in case there is an error, AWS AppConfig can roll back the changes automatically to prevent any application outages.
+A modern, TypeScript-based implementation of AWS AppConfig Feature Flags with React frontend and AWS Lambda backend.
 
-To introduce you to AWS AppConfig Feature Flags, we’ll build a sample application that takes advantage of feature flags and show how the new managed experience works.
+## 🚀 Features
 
-Read more in the blog post Introducing AWS AppConfig Feature Flags In Preview: https://aws.amazon.com/blogs/mt/introducing-aws-appconfig-feature-flags-in-preview/
+- **TypeScript**: Full TypeScript implementation with strict type checking
+- **Modern React 18**: Latest React patterns with hooks and functional components
+- **AWS SDK v3**: Modular AWS SDK with improved performance and TypeScript support
+- **AWS Lambda Powertools**: Structured logging and parameter management
+- **Multi-variant Feature Flags**: Support for A/B testing and gradual rollouts
+- **Comprehensive Error Handling**: Robust error boundaries and fallback mechanisms
+- **Comprehensive Testing**: Unit tests for both frontend and backend
 
-## Install the backend application
+## 🏗 Architecture
 
-1. Clone the repo onto your local development machine.
+### Frontend (React 18 + TypeScript)
+- React 18.3+ with TypeScript 5.9+
+- Modern hooks and functional components
+- Type-safe feature flag interfaces
+- Error boundaries and comprehensive error handling
+- AWS Amplify for API integration
+
+### Backend (AWS Lambda + TypeScript)
+- Node.js 22.x runtime
+- AWS SDK v3 with modular imports
+- AWS Lambda Powertools for observability
+- AppConfig Agent Lambda extension for optimized caching
+- Strongly typed Lambda handlers and utilities
+
+### Infrastructure
+- AWS SAM for infrastructure as code
+- AWS AppConfig for feature flag management
+- DynamoDB for product data
+- API Gateway for REST endpoints
+
+## 📋 Prerequisites
+
+- Node.js 22.x or later
+- AWS CLI configured
+- AWS SAM CLI
+- TypeScript 5.9+
+
+## 🛠 Setup
+
+### Backend Setup
+
+1. Navigate to the backend directory:
+   ```bash
+   cd backend
+   ```
+
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+3. Build the TypeScript code:
+   ```bash
+   npm run build
+   ```
+
+4. Deploy using SAM:
+   ```bash
+   sam build
+   sam deploy --guided
+   ```
+
+### Frontend Setup
+
+1. Navigate to the frontend directory:
+   ```bash
+   cd frontend
+   ```
+
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+3. Update the configuration:
+   ```bash
+   cp src/config.json.template src/config.json
+   # Edit src/config.json with your API Gateway URL
+   ```
+
+4. Start the development server:
+   ```bash
+   npm start
+   ```
+
+## 🧪 Testing
+
+### Backend Tests
 ```bash
-git clone https://github.com/aws-samples/aws-appconfig-feature-flags.git
-```
-2. Run the following commands to change to the backend directory and install dependencies.
-```bash
-cd aws-appconfig-feature-flags
 cd backend
-npm install
-```
-3. Process and build your application using the AWS SAM template file.
-```bash
-sam build
-```
-4. Deploy the backend application using the following command and follow the prompts. 
-```bash
-sam deploy --guided
-```
-5. Add the IDs of the AppConfig Application, Environment, and Configuration Profile when prompted, and confirm all of the deployment prompts.
-6. In the output of the deployment, note the DynamoDBTableName key and the HTTPApiUrl key. You will get the output similar to the following:
-```bash
-Key DynamoDBTableName Description The name of your DynamoDB table Value sam-app-DynamoDBTable-XXXXXXXXXXX
-Key HttpApiUrl Description URL of your API endpoint Value https://XXXXXXXX.execute-api.XX-XXXXXXXX-1.amazonaws.com
+npm test
 ```
 
-## Populate DynamoDB table with sample data
-
-1. Open the template file dynamodb.json.template and replace YOUR_DYNAMODB_TABLE_NAME with the DynamoDBTableName key from sam deploy output. Save the file as dynamodb.json.
-2. Run the following command to populate the DynamoDB table with sample data:
+### Frontend Tests
 ```bash
-aws dynamodb batch-write-item --request-items file://dynamodb.json
+cd frontend
+npm test
 ```
-3. You will get the following output:
-```bash
-{
-"UnprocessedItems": {}
+
+## 📝 TypeScript Configuration
+
+### Backend TypeScript Config
+- Target: ES2023
+- Module: CommonJS
+- Strict mode enabled
+- Full type checking with no implicit any
+
+### Frontend TypeScript Config
+- Target: ES2023
+- JSX: react-jsx (React 18 transform)
+- Strict mode enabled
+- DOM and ES2023 libraries
+
+## 🎛 Feature Flags
+
+### Basic Feature Flags
+```typescript
+interface FeatureFlag {
+  enabled: boolean;
+  description?: string;
 }
 ```
 
-## Install the front-end application
+### Multi-variant Feature Flags
+```typescript
+interface MultiVariantFlag extends FeatureFlag {
+  variants: {
+    [variantName: string]: {
+      enabled: boolean;
+      value: unknown;
+      weight?: number;
+    };
+  };
+  defaultVariant: string;
+  rules?: VariantRule[];
+}
+```
 
-1. Change to the frontend directory and install the dependencies using
+### Usage in React Components
+```typescript
+import { useFeatureFlag } from './hooks/useFeatureFlag';
+
+const MyComponent: React.FC = () => {
+  const { isEnabled, variant } = useFeatureFlag('my-feature');
+  
+  if (!isEnabled) {
+    return <div>Feature not available</div>;
+  }
+  
+  return <div>Feature content: {String(variant)}</div>;
+};
+```
+
+## 🔧 Development
+
+### Backend Development
+```bash
+cd backend
+npm run build:watch  # Watch mode compilation
+npm run type-check   # Type checking only
+npm run lint         # ESLint
+```
+
+### Frontend Development
 ```bash
 cd frontend
-npm install
+npm start           # Development server
+npm run type-check  # Type checking only
+npm run lint        # ESLint
 ```
-2. Open the template file config.json.template in the folder src and replace YOUR_API_ENDPOINT with the HTTPApiUrl key from sam deploy output. Save the file as config.json.
-3. Start the local development server.
+
+## 📦 Build and Deployment
+
+### Backend Build
 ```bash
-npm start
+cd backend
+npm run build
+sam build
+sam deploy
 ```
-4. Open http://localhost:3000/ in your browser to view the web application.
 
-## Remove the sample application
-Delete the CloudFormation stack via CLI:
+### Frontend Build
 ```bash
-aws cloudformation delete-stack --stack-name YOUR-STACK-NAME
+cd frontend
+npm run build
 ```
 
-## Security
+## 🔍 Monitoring and Logging
 
-See [CONTRIBUTING](CONTRIBUTING.md#security-issue-notifications) for more information.
+The application uses AWS Lambda Powertools for:
+- Structured logging with correlation IDs
+- Parameter management with caching
+- Error tracking and monitoring
 
-## License
+Logs are available in CloudWatch with structured JSON format.
 
-This library is licensed under the MIT-0 License. See the LICENSE file.
+## 🚨 Error Handling
+
+### Backend Error Handling
+- Custom error classes for different scenarios
+- Structured error responses with correlation IDs
+- Fallback mechanisms for AppConfig failures
+
+### Frontend Error Handling
+- React Error Boundaries for component errors
+- Comprehensive API error handling
+- User-friendly error messages with retry options
+
+## 🔐 Security
+
+- IAM policies with least privilege access
+- CORS configuration for API endpoints
+- Input validation and sanitization
+- Secure environment variable handling
+
+## 📊 Performance
+
+- AWS AppConfig Agent extension for optimized caching
+- Modular AWS SDK imports for reduced bundle size
+- React 18 concurrent features
+- TypeScript compilation optimizations
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes with proper TypeScript types
+4. Add tests for new functionality
+5. Ensure all tests pass
+6. Submit a pull request
+
+## 📄 License
+
+This project is licensed under the MIT-0 License - see the original AWS sample for details.
+
+## 🆘 Troubleshooting
+
+### Common Issues
+
+1. **TypeScript compilation errors**: Ensure all dependencies are installed and TypeScript version is 5.9+
+2. **AppConfig connection issues**: Verify environment variables and IAM permissions
+3. **React build errors**: Check that all imports use proper TypeScript syntax
+
+### Debug Mode
+
+Enable debug logging by setting environment variables:
+```bash
+# Backend
+export FASTMCP_LOG_LEVEL=DEBUG
+
+# Frontend
+export REACT_APP_DEBUG=true
+```
+
+## 📚 Additional Resources
+
+- [AWS AppConfig Documentation](https://docs.aws.amazon.com/appconfig/)
+- [AWS Lambda Powertools TypeScript](https://docs.powertools.aws.dev/lambda/typescript/)
+- [React 18 Documentation](https://react.dev/)
+- [TypeScript Handbook](https://www.typescriptlang.org/docs/)
