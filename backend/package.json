@@ -3,10 +3,12 @@
     "description": "appconfig-feature-flags",
     "version": "1.0.0",
     "private": true,
-    "dependencies": {},
     "devDependencies": {
-        "eslint": "^8.1.0",
-        "eslint-config-strongloop": "^2.1.0",
-        "eslint-plugin-import": "^2.25.2"
+        "@aws-sdk/client-dynamodb": "^3.1012.0",
+        "@aws-sdk/lib-dynamodb": "^3.1012.0",
+        "@eslint/js": "^9.0.0",
+        "eslint": "^9.0.0",
+        "fast-check": "^4.6.0",
+        "vitest": "^4.1.0"
     }
 }

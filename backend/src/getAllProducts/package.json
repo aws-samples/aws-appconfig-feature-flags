@@ -3,5 +3,8 @@
     "description": "appconfig-feature-flags",
     "version": "0.0.1",
     "private": true,
-    "dependencies": {}
+    "dependencies": {
+        "@aws-sdk/client-dynamodb": "^3.0.0",
+        "@aws-sdk/lib-dynamodb": "^3.0.0"
+    }
 }

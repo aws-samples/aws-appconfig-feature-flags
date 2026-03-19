@@ -1,6 +1,0 @@
-{
-  "extends": "strongloop",
-  "parserOptions": {
-    "ecmaVersion": 8
-  }
-}

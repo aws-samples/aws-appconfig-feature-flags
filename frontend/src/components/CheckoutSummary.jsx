@@ -12,13 +12,13 @@ import AppContext from "../context/AppContext";
 function CheckoutSummary(props) {
   const { flags } = useContext(AppContext);
   const { total } = props;
-  const feature=flags[0]['mobile_payment'];
+  const feature = flags && flags[0] ? flags[0]['mobile_payment'] : undefined;
   let featureTitle;
-  if (typeof feature.title === 'undefined') {
+  if (!feature || typeof feature.title === 'undefined') {
     featureTitle = 'Mobile payment';
   } else {
     featureTitle = feature.title;
-  };
+  }
 
   return (
     <div>

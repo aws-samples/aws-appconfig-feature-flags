@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: MIT-0
 
 import React, { useEffect, useContext } from "react";
-import { API } from "aws-amplify";
+import { get } from "aws-amplify/api";
 import AppContext from "../context/AppContext";
 import configData from "../config.json";
 
@@ -12,9 +12,14 @@ function InitState() {
 
   useEffect(() => {
     if (itemCache < Date.now()) {
-      API.get("apiendpoint", "/products")
-        .then((response) => {
-          addItems(response);
+      const restOperation = get({
+        apiName: "apiendpoint",
+        path: "/products",
+      });
+      restOperation.response
+        .then(async (res) => {
+          const body = await res.body.json();
+          addItems(body);
           cacheItem(Date.now() + 1000 + configData.ITEM_CACHE);
         })
         .catch((error) => {
@@ -25,10 +30,15 @@ function InitState() {
 
   useEffect(() => {
     if (flagCache < Date.now()) {
-      API.get("apiendpoint", "/flags")
-        .then((response) => {
+      const restOperation = get({
+        apiName: "apiendpoint",
+        path: "/flags",
+      });
+      restOperation.response
+        .then(async (res) => {
+          const body = await res.body.json();
           const responseArray = [];
-          responseArray.push(response);
+          responseArray.push(body);
           addFlags(responseArray);
           cacheFlag(Date.now() + 1000 + configData.FLAG_CACHE);
         })

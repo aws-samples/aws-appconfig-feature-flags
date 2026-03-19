@@ -2,6 +2,7 @@
 // SPDX-License-Identifier: MIT-0
 
 import React, { useState, useEffect, useContext } from "react";
+import { useNavigate } from 'react-router-dom';
 import { Grid } from "semantic-ui-react";
 
 import AppContext from "../context/AppContext";
@@ -11,11 +12,12 @@ import CheckoutBanner from "../components/CheckoutBanner";
 import CheckoutSummary from "../components/CheckoutSummary";
 import CheckoutPayment from "../components/CheckoutPayment";
 
-function Checkout(props) {
+function Checkout() {
   const [ordering] = useState(false);
   const [setCard] = useState(0);
   const [totalPurchase, setTotal] = useState(0);
   const [orderComplete, setOrderComplete] = useState(false);
+  const navigate = useNavigate();
 
   var { cart, items, clearCart } = useContext(AppContext);
 
@@ -58,9 +60,9 @@ function Checkout(props) {
 
       clearCart();
 
-      props.history.push("/");
+      navigate("/");
     }
-  }, [orderComplete, props.history, clearCart, totalPurchase]);
+  }, [orderComplete, clearCart, totalPurchase, navigate]);
 
   return (
     <div>

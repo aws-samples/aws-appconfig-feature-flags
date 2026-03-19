@@ -1,9 +1,11 @@
 'use strict';
-const dynamodb = require('aws-sdk/clients/dynamodb');
+const { DynamoDBClient } = require('@aws-sdk/client-dynamodb');
+const { DynamoDBDocumentClient, ScanCommand } = require('@aws-sdk/lib-dynamodb');
 const getConfig = require('/opt/nodejs/getConfig');
 const getFeature = require('/opt/nodejs/getFeature');
 
-const docClient = new dynamodb.DocumentClient();
+const client = new DynamoDBClient({});
+const docClient = DynamoDBDocumentClient.from(client);
 const tableName = process.env.PRODUCT_TABLE;
 
 async function getProducts() {
@@ -19,7 +21,7 @@ async function getProducts() {
     TableName: tableName,
     AttributesToGet: attributesToGet,
   };
-  const data = await docClient.scan(params).promise();
+  const data = await docClient.send(new ScanCommand(params));
   return data;
 }
 
