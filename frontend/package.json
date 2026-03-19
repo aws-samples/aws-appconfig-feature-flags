@@ -3,34 +3,26 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "aws-amplify": "^4.3.18",
-    "aws-amplify-react": "^5.1.9",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-router-dom": "^5.3.0",
-    "react-scripts": "^4.0.3",
-    "semantic-ui-react": "^2.1.2",
-    "styled-components": "^5.3.5"
+    "aws-amplify": "^6",
+    "react": "^18",
+    "react-dom": "^18",
+    "react-router-dom": "^6",
+    "semantic-ui-react": "^2.1.5",
+    "styled-components": "^6"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.2",
+    "@vitejs/plugin-react": "^4",
+    "fast-check": "^4.6.0",
+    "jsdom": "^29.0.0",
+    "vite": "^6",
+    "vitest": "^4.1.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+    "start": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "vitest --run"
   }
 }

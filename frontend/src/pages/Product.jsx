@@ -14,6 +14,7 @@ import {
 } from "semantic-ui-react";
 import styled from "styled-components";
 
+import { useParams } from 'react-router-dom';
 import AppContext from "../context/AppContext";
 
 import InitState from "./InitState";
@@ -21,15 +22,15 @@ import TopMenu from "../components/TopMenu";
 import { formatCurrency } from "../services/currency";
 import Feature from "../components/Feature";
 
-function Product(props) {
+function Product() {
   const [quantity, setQuantity] = useState(1);
 
   const { items, addItemToCart } = useContext(AppContext);
 
-  const { params } = props.match;
+  const { id } = useParams();
 
   var _product = items.filter(function (el) {
-    return el.id === parseInt(params.id);
+    return el.id === parseInt(id);
   });
 
   var product = "";

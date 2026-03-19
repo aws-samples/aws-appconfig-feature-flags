@@ -1,5 +1,4 @@
 'use strict';
-const fetch = require('node-fetch');
 
 async function getConfig() {
   let appconfigPort = 2772;

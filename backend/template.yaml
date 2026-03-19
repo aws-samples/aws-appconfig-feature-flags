@@ -50,7 +50,7 @@ Resources:
     Properties:
       Handler: getFeatureFlags.handler
       CodeUri: src/getFeatureFlags/
-      Runtime: nodejs14.x
+      Runtime: nodejs20.x
       MemorySize: 128
       Timeout: 100
       Layers:
@@ -87,7 +87,7 @@ Resources:
     Properties:
       Handler: getAllProducts.handler
       CodeUri: src/getAllProducts/
-      Runtime: nodejs14.x
+      Runtime: nodejs20.x
       MemorySize: 128
       Timeout: 100
       Layers:
@@ -127,10 +127,10 @@ Resources:
     Properties:
       ContentUri: src/FeatureFlagLayer/.
       CompatibleRuntimes:
-          - nodejs14.x
+          - nodejs20.x
       RetentionPolicy: Delete
     Metadata:
-      BuildMethod: nodejs14.x
+      BuildMethod: nodejs20.x
 
   ##  API Gateway
   HttpApi:
