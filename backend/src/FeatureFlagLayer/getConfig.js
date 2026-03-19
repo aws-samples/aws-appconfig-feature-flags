@@ -1,11 +1,8 @@
 'use strict';
 
 async function getConfig() {
-  let appconfigPort = 2772;
+  const appconfigPort = process.env.AWS_APPCONFIG_EXTENSION_HTTP_PORT || 2772;
   try {
-    if (process.env.AWS_APPCONFIG_EXTENSION_HTTP_PORT) {
-      appconfigPort = process.env.APPCONFIG_EXTENSION_HTTP_PORT;
-    }
     const url = `http://localhost:${appconfigPort}`
               + `/applications/${process.env.APPCONFIG_APPLICATION}`
               + `/environments/${process.env.APPCONFIG_ENVIRONMENT}`
