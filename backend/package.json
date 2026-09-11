@@ -9,6 +9,6 @@
         "@eslint/js": "^9.0.0",
         "eslint": "^9.0.0",
         "fast-check": "^4.6.0",
-        "vitest": "^4.1.0"
+        "vitest": "^4.1.11"
     }
 }
